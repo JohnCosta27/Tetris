@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+	static int[][] grid = new int[20][10];
+	
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Hello World");
         VBox root = new VBox();
@@ -20,6 +22,39 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 	// write your code here
-        launch(args);
+        //launch(args);
+    	
+    	int[][] LShape = {{1, 0, 0},
+    					  {1, 1, 1}};
+    	
+    	insertShape(LShape);
+    	
+    	printArray(grid);
+    	
     }
+
+    public static void printArray(int[][] grid) {
+    	for (int i = 0; i < grid.length; i++) {
+    		for (int j = 0; j < grid[0].length; j++) {
+    			System.out.print(grid[i][j]);
+    		}
+    		System.out.println();
+    	}
+    }
+    
+    public static void insertShape(int[][] shape) {
+    	
+    	int x = (grid[0].length - shape[0].length) / 2 + 1;
+    	int y = 0;
+    	
+    	for (int i = 0; i < shape.length; i++) {
+    		for (int j = 0; j < shape[0].length; j++) {
+    			
+    			grid[y + i][x + j] = shape[i][j];
+    			
+    		}
+    	}
+    	
+    }
+    
 }
