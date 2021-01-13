@@ -21,8 +21,8 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-	// write your code here
-        //launch(args);
+	//write your code here
+        launch(args);
     	
     	int[][] LShape = {{1, 0, 0},
     					  {1, 1, 1}};
