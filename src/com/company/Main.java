@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+publcu 
 
 public class Main extends Application {
 
@@ -27,6 +28,8 @@ public class Main extends Application {
 
     	
     	insertShape(Shape.L_SHAPE);
+    	updateShape()
+		L_SHAPE(new int[][] {{0, 0, 1}, {1, 1, 1}});
     	
     	printArray(grid);
     	

@@ -1,13 +1,12 @@
 package com.company;
 
-public enum Shape {
+public class Shape {
 
-    L_SHAPE(new int[][] {{0, 0, 1}, {1, 1, 1}});
     private int[][] configuration;
     private int x= 0;
     private int y = 0;
 
-    private Shape(int[][] configuration) {
+    public Shape(int[][] configuration) {
         this.configuration = configuration;
         this.x = (10 - this.configuration[0].length) / 2 + 1;
     }
@@ -23,4 +22,22 @@ public enum Shape {
     public int getY() {
         return this.y;
     }
+
+    public void down(){
+        this.y++;
+    }
+
+    public void right(){
+        if ( this.x < 10-this.configuration.length) this.x++;
+    }
+
+    public void left(){
+        if ( this.x!=0)this.x--;
+    }
+
+
+
+
+
+
 }
