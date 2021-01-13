@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+
 public class Main extends Application {
 
 	static int[][] grid = new int[20][10];
@@ -22,12 +23,10 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 	//write your code here
-        launch(args);
+        // launch(args);
+
     	
-    	int[][] LShape = {{1, 0, 0},
-    					  {1, 1, 1}};
-    	
-    	insertShape(LShape);
+    	insertShape(Shape.L_SHAPE);
     	
     	printArray(grid);
     	
@@ -42,15 +41,15 @@ public class Main extends Application {
     	}
     }
     
-    public static void insertShape(int[][] shape) {
-    	
-    	int x = (grid[0].length - shape[0].length) / 2 + 1;
+    public static void insertShape(Shape shape) {
+    	int [][] configuration = shape.getConfiguration();
+    	int x = (grid[0].length - configuration[0].length) / 2 + 1;
     	int y = 0;
     	
-    	for (int i = 0; i < shape.length; i++) {
-    		for (int j = 0; j < shape[0].length; j++) {
+    	for (int i = 0; i < configuration.length; i++) {
+    		for (int j = 0; j < configuration[0].length; j++) {
     			
-    			grid[y + i][x + j] = shape[i][j];
+    			grid[y + i][x + j] = configuration[i][j];
     			
     		}
     	}
