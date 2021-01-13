@@ -50,7 +50,7 @@ public class Main extends Application {
     	for (int i = 0; i < configuration.length; i++) {
     		for (int j = 0; j < configuration[0].length; j++) {
     			
-    			grid[y + i][x + j] = configuration[i][j];
+    			if (configuration[i][j] == 1) grid[y + i][x + j] = configuration[i][j];
     			
     		}
     	}
