@@ -43,9 +43,10 @@ public class Main extends Application {
     
     public static void insertShape(Shape shape) {
     	int [][] configuration = shape.getConfiguration();
-    	int x = (grid[0].length - configuration[0].length) / 2 + 1;
-    	int y = 0;
-    	
+
+    	int x = shape.getX();
+    	int y = shape.getY();
+
     	for (int i = 0; i < configuration.length; i++) {
     		for (int j = 0; j < configuration[0].length; j++) {
     			
