@@ -3,12 +3,14 @@ package com.company;
 public class Shape {
 
     private int[][] configuration;
-    private int x= 0;
+    private int x;
     private int y = 0;
 
-    public Shape(int[][] configuration) {
-        this.configuration = configuration;
+    public Shape() {
+
+        this.configuration = ShapeConfig.L_SHAPE.getConfiguration();
         this.x = (10 - this.configuration[0].length) / 2 + 1;
+
     }
 
     public int[][] getConfiguration() {
@@ -28,16 +30,11 @@ public class Shape {
     }
 
     public void right(){
-        if ( this.x < 10-this.configuration.length) this.x++;
+        if (this.x < 10 - this.configuration.length) this.x++;
     }
 
     public void left(){
-        if ( this.x!=0)this.x--;
+        if ( this.x != 0)this.x--;
     }
-
-
-
-
-
 
 }
