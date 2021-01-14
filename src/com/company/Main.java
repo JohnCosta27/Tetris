@@ -6,10 +6,11 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.scene.input.KeyEvent;
 
 
 import javafx.scene.input.KeyCode;
@@ -27,10 +28,14 @@ public class Main extends Application  {
         primaryStage.setTitle("Hello World");
         VBox root = new VBox();
 
-        Label hello = new Label("Hello");
-        Label world = new Label("World");
-		root.getChildren().addAll(hello, world);
-		Scene scene = new Scene(root);
+        Canvas canvas = new Canvas(100.0f, 100.0f);
+        GraphicsContext context = canvas.getGraphicsContext2D();
+
+        context.setFill(Color.RED);
+        context.fillRect(0, 0, 50, 50);
+
+        root.getChildren().add(canvas);
+        Scene scene = new Scene(root);
 
 		scene.setOnKeyPressed(event ->  {
 			if (event.getCode() == KeyCode.RIGHT) {
