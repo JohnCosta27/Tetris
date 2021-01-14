@@ -69,4 +69,12 @@ public class Game {
 
     }
 
+    public void leftClick() {
+        this.currentShape.left();
+    }
+
+    public void rightClick() {
+        this.currentShape.right();
+    }
+
 }

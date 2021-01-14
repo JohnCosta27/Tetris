@@ -1,17 +1,17 @@
 package com.company;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.Scanner;
+import javafx.scene.input.KeyEvent;
 
 
-public class Main extends Application {
+import javafx.scene.input.KeyCode;
+
+public class Main extends Application  {
 
 	static int[][] grid = new int[20][10];
 
@@ -20,20 +20,33 @@ public class Main extends Application {
 
         primaryStage.setTitle("Hello World");
         VBox root = new VBox();
-        primaryStage.setScene(new Scene(root));
+
         Label hello = new Label("Hello");
         Label world = new Label("World");
-        root.getChildren().addAll(hello, world);
+		root.getChildren().addAll(hello, world);
+		Scene scene = new Scene(root);
+		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent event) {
+				if (event.getCode() == KeyCode.ENTER) {
+					System.out.println("Enter Pressed");
+				}
+			}
+		});
+		primaryStage.setScene(scene);
         primaryStage.show();
 
     }
 
     public static void main(String[] args) {
 	//write your code here
-        // launch(args);
+        launch(args);
 
-        Game game = new Game();
+        //Game game = new Game();
+        //game.start();
 
     }
+
 
 }
