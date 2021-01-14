@@ -25,17 +25,15 @@ public class Main extends Application  {
         Label world = new Label("World");
 		root.getChildren().addAll(hello, world);
 		Scene scene = new Scene(root);
-		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-
-			@Override
-			public void handle(KeyEvent event) {
-				if (event.getCode() == KeyCode.ENTER) {
-					System.out.println("Enter Pressed");
-				}
+		scene.setOnKeyPressed(event ->  {
+			if (event.getCode() == KeyCode.RIGHT) {
+				System.out.println("Enter Pressed");
 			}
 		});
 		primaryStage.setScene(scene);
         primaryStage.show();
+        Game game = new  Game();
+        game.start();
 
     }
 
