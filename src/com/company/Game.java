@@ -13,7 +13,11 @@ public class Game {
         this.updateShape();
         this.printGrid();
 
-        Scanner keyboard = new Scanner(System.in);
+    }
+
+    public void start(){
+
+
 
         long start = System.currentTimeMillis();
 
@@ -24,7 +28,7 @@ public class Game {
             //String input = keyboard.nextLine();
             //if (input.equals("left")) this.currentShape.left();
             //else if (input.equals("right")) this.currentShape.right();
-           // else if (input.equals("down")) this.currentShape.down();
+            // else if (input.equals("down")) this.currentShape.down();
 
             //this.updateShape();
             //this.printGrid();
@@ -35,7 +39,6 @@ public class Game {
             }
 
         }
-
     }
 
     public void printGrid() {
