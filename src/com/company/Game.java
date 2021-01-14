@@ -61,4 +61,8 @@ public class Game {
         printGrid();
     }
 
+    public int[][] getGrid() {
+        return this.grid;
+    }
+
 }

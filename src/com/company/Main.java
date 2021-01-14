@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 import javafx.scene.input.KeyCode;
 import javafx.util.Duration;
 
-public class Main extends Application  {
+public class Main extends Application {
 
     public void start(Stage primaryStage) {
 
@@ -25,25 +25,47 @@ public class Main extends Application  {
         primaryStage.setTitle("Hello World");
         VBox root = new VBox();
 
-        Canvas canvas = new Canvas(100.0f, 100.0f);
-        GraphicsContext context = canvas.getGraphicsContext2D();
-
-        context.setFill(Color.RED);
-        context.fillRect(0, 0, 50, 50);
-
-        root.getChildren().add(canvas);
         Scene scene = new Scene(root);
 
-		scene.setOnKeyPressed(event ->  {
-			if (event.getCode() == KeyCode.RIGHT) {
-				game.rightClick();
-			} else if (event.getCode() == KeyCode.LEFT) {
-			    game.leftClick();
-            }
-		});
+        primaryStage.setScene(scene);
+        primaryStage.setFullScreen(true);
 
-		primaryStage.setScene(scene);
+        scene.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.RIGHT) {
+                game.rightClick();
+            } else if (event.getCode() == KeyCode.LEFT) {
+                game.leftClick();
+            }
+        });
+
         primaryStage.show();
+
+        Canvas canvas = new Canvas(primaryStage.getWidth(), primaryStage.getHeight());
+        GraphicsContext context = canvas.getGraphicsContext2D();
+
+        double height = primaryStage.getHeight();
+        double width = primaryStage.getWidth();
+        double squareSize = height / 20;
+
+        context.setFill(Color.BLACK);
+        context.fillRect((width / 2) - (squareSize * 5), 0, squareSize * 10, height);
+
+        context.setStroke(new Color(0.1, 0.1, 0.1, 1));
+        context.setLineWidth(1);
+
+        for (int i = 1; i < 20; i++) {
+            context.moveTo((width / 2) - (squareSize * 5), i * squareSize);
+            context.lineTo((width / 2) + (squareSize * 5), i * squareSize);
+            context.stroke();
+            for (int j = 1; j < 10; j++) {
+                final double v = (width / 2) - (squareSize * 5) + j * squareSize;
+                context.moveTo(v, 0);
+                context.lineTo(v, height);
+                context.stroke();
+            }
+        }
+
+        root.getChildren().add(canvas);
 
         Timeline fiveSecondsWonder = new Timeline(
                 new KeyFrame(Duration.seconds(1),
@@ -60,8 +82,9 @@ public class Main extends Application  {
 
     }
 
+
     public static void main(String[] args) {
-	//write your code here
+        //write your code here
         launch(args);
 
         //Game game = new Game();
