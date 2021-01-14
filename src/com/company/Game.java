@@ -15,30 +15,12 @@ public class Game {
 
     }
 
-    public void start(){
+    public void tick() {
 
+        currentShape.down();
+        updateShape();
+        printGrid();
 
-
-        long start = System.currentTimeMillis();
-
-        while (true) {
-
-            long current = System.currentTimeMillis();
-
-            //String input = keyboard.nextLine();
-            //if (input.equals("left")) this.currentShape.left();
-            //else if (input.equals("right")) this.currentShape.right();
-            // else if (input.equals("down")) this.currentShape.down();
-
-            //this.updateShape();
-            //this.printGrid();
-
-            if (current - start == 1000) {
-                System.out.println("dsadsadsa");
-                start = current;
-            }
-
-        }
     }
 
     public void printGrid() {
@@ -71,10 +53,12 @@ public class Game {
 
     public void leftClick() {
         this.currentShape.left();
+        printGrid();
     }
 
     public void rightClick() {
         this.currentShape.right();
+        printGrid();
     }
 
 }
