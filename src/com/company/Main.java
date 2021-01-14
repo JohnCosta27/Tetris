@@ -18,9 +18,6 @@ import javafx.util.Duration;
 
 public class Main extends Application  {
 
-	static int[][] grid = new int[20][10];
-
-
     public void start(Stage primaryStage) {
 
         Game game = new Game();
