@@ -30,14 +30,6 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
 
-        scene.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.RIGHT) {
-                game.rightClick();
-            } else if (event.getCode() == KeyCode.LEFT) {
-                game.leftClick();
-            }
-        });
-
         primaryStage.show();
 
         Canvas canvas = new Canvas(primaryStage.getWidth(), primaryStage.getHeight());
@@ -53,18 +45,6 @@ public class Main extends Application {
         context.setStroke(new Color(0.1, 0.1, 0.1, 1));
         context.setLineWidth(1);
 
-        for (int i = 1; i < 20; i++) {
-            context.moveTo((width / 2) - (squareSize * 5), i * squareSize);
-            context.lineTo((width / 2) + (squareSize * 5), i * squareSize);
-            context.stroke();
-            for (int j = 1; j < 10; j++) {
-                final double v = (width / 2) - (squareSize * 5) + j * squareSize;
-                context.moveTo(v, 0);
-                context.lineTo(v, height);
-                context.stroke();
-            }
-        }
-
         root.getChildren().add(canvas);
 
         Timeline fiveSecondsWonder = new Timeline(
@@ -74,14 +54,56 @@ public class Main extends Application {
                             @Override
                             public void handle(ActionEvent event) {
                                 game.tick();
+                                redraw(primaryStage, canvas, game);
                             }
                         }));
 
         fiveSecondsWonder.setCycleCount(Timeline.INDEFINITE);
         fiveSecondsWonder.play();
 
+        scene.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.RIGHT) {
+                game.rightClick();
+                redraw(primaryStage, canvas, game);
+            } else if (event.getCode() == KeyCode.LEFT) {
+                game.leftClick();
+                redraw(primaryStage, canvas, game);
+            }
+        });
+
     }
 
+    public static void redraw(Stage primaryStage, Canvas canvas, Game game) {
+
+        (new Thread(() -> {
+
+            GraphicsContext context = canvas.getGraphicsContext2D();
+
+            double height = primaryStage.getHeight();
+            double width = primaryStage.getWidth();
+            double squareSize = height / 20;
+
+            context.setFill(Color.BLACK);
+            context.fillRect((width / 2) - (squareSize * 5), 0, squareSize * 10, height);
+
+            context.setStroke(new Color(0.1, 0.1, 0.1, 1));
+            context.setLineWidth(1);
+
+            int[][] grid = game.getGrid();
+
+            context.setFill(Color.RED);
+            for (int i = 0; i < grid.length; i++) {
+                for (int j = 0; j < grid[0].length; j++) {
+
+                    double topleft = (width / 2) - (squareSize * 5);
+                    if (grid[i][j] == 1) context.fillRect(topleft + j * squareSize, i * squareSize, squareSize, squareSize);
+
+                }
+            }
+
+        })).start();
+
+    }
 
     public static void main(String[] args) {
         //write your code here
