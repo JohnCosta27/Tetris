@@ -30,11 +30,11 @@ public class Shape {
     }
 
     public void right(){
-        if (this.x < 10 - this.configuration.length) this.x++;
+        if (this.x < 10 - this.configuration.length - 1) this.x++;
     }
 
     public void left(){
-        if ( this.x != 0)this.x--;
+        if (this.x != 0) this.x--;
     }
 
 }

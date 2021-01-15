@@ -30,6 +30,7 @@ public class Game {
             }
             System.out.println();
         }
+        System.out.println("----------------");
     }
 
     public void updateShape() {
@@ -53,12 +54,12 @@ public class Game {
 
     public void leftClick() {
         this.currentShape.left();
-        printGrid();
+        this.updateShape();
     }
 
     public void rightClick() {
         this.currentShape.right();
-        printGrid();
+        this.updateShape();
     }
 
     public int[][] getGrid() {
