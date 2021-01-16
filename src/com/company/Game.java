@@ -19,7 +19,7 @@ public class Game {
 
         currentShape.down();
         updateShape();
-        printGrid();
+        //sprintGrid();
 
     }
 

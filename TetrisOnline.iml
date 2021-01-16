@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="javafx.swing" level="application" />
     <orderEntry type="library" exported="" name="lib" level="project" />
+    <orderEntry type="library" name="javafx-swing" level="project" />
   </component>
 </module>
