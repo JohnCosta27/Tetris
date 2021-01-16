@@ -17,16 +17,15 @@ import javafx.scene.input.KeyCode;
 import javafx.util.Duration;
 import javafx.scene.image.Image;
 
+import java.io.File;
+
 
 public class Main extends Application {
 
     private Canvas canvas = new Canvas();
     private Game game = new Game();
-    private Image image;
 
     public void start(Stage primaryStage) {
-
-
 
         primaryStage.setTitle("Tetris");
         VBox root = new VBox();
@@ -37,18 +36,13 @@ public class Main extends Application {
         primaryStage.setFullScreen(true);
         primaryStage.show();
 
-
-
         primaryStage.setWidth(Screen.getPrimary().getBounds().getWidth());
         primaryStage.setHeight(Screen.getPrimary().getBounds().getHeight());
-
-
 
         canvas.setWidth(primaryStage.getWidth());
         canvas.setHeight(primaryStage.getHeight());
 
         root.getChildren().add(canvas);
-
 
         draw();
 
@@ -87,18 +81,17 @@ public class Main extends Application {
     private void draw() {
 
         GraphicsContext context = canvas.getGraphicsContext2D();
-        Image image = new Image("pixelgrid.png");
-        context.drawImage(image, 0, 0);
+        Image image = new Image(new File("pixelgrid.png").toURI().toString());
+
+        /*
+        The drawing of the image can probably be optimised.
+         */
 
         double height = canvas.getHeight();
         double width = canvas.getWidth();
         double squareSize = height / 20;
 
-        context.setFill(Color.BLACK);
-        context.fillRect((width / 2) - (squareSize * 5), 0, squareSize * 10, height);
-
-        context.setStroke(new Color(0.1, 0.1, 0.1, 1));
-        context.setLineWidth(1);
+        context.drawImage(image, (width / 2) - (squareSize * 5), 0, squareSize * 10, height);
 
         int[][] grid = game.getGrid();
 
@@ -107,7 +100,7 @@ public class Main extends Application {
             for (int j = 0; j < grid[0].length; j++) {
 
                 double topleft = (width / 2) - (squareSize * 5);
-                if (grid[i][j] == 1) context.fillRect(topleft + j * squareSize, i * squareSize, squareSize, squareSize);
+                if (grid[i][j] == 1) context.fillRect(topleft + j * squareSize, i * squareSize, squareSize - 2, squareSize - 2);
 
             }
         }
