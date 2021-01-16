@@ -49,7 +49,7 @@ public class Main extends Application {
         scene.setOnKeyPressed(e -> keyPressed(e));
 
         Timeline fiveSecondsWonder = new Timeline(
-                new KeyFrame(Duration.seconds(1),
+                new KeyFrame(Duration.seconds(0.1),
                         new EventHandler<ActionEvent>() {
 
                             @Override
@@ -100,7 +100,9 @@ public class Main extends Application {
             for (int j = 0; j < grid[0].length; j++) {
 
                 double topleft = (width / 2) - (squareSize * 5);
-                if (grid[i][j] == 1) context.fillRect(topleft + j * squareSize, i * squareSize, squareSize - 2, squareSize - 2);
+                if (grid[i][j] == 1 || grid[i][j] == 2) context.fillRect(topleft + j * squareSize, i * squareSize, squareSize - 2, squareSize - 2);
+
+
 
             }
         }
