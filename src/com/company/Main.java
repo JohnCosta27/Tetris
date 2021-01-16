@@ -15,13 +15,18 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.input.KeyCode;
 import javafx.util.Duration;
+import javafx.scene.image.Image;
+
 
 public class Main extends Application {
 
     private Canvas canvas = new Canvas();
     private Game game = new Game();
+    private Image image;
 
     public void start(Stage primaryStage) {
+
+
 
         primaryStage.setTitle("Tetris");
         VBox root = new VBox();
@@ -32,13 +37,18 @@ public class Main extends Application {
         primaryStage.setFullScreen(true);
         primaryStage.show();
 
+
+
         primaryStage.setWidth(Screen.getPrimary().getBounds().getWidth());
         primaryStage.setHeight(Screen.getPrimary().getBounds().getHeight());
+
+
 
         canvas.setWidth(primaryStage.getWidth());
         canvas.setHeight(primaryStage.getHeight());
 
         root.getChildren().add(canvas);
+
 
         draw();
 
@@ -77,6 +87,8 @@ public class Main extends Application {
     private void draw() {
 
         GraphicsContext context = canvas.getGraphicsContext2D();
+        Image image = new Image("pixelgrid.png");
+        context.drawImage(image, 0, 0);
 
         double height = canvas.getHeight();
         double width = canvas.getWidth();
