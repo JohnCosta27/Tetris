@@ -2,7 +2,7 @@ package com.company;
 
 public enum ShapeConfig {
 
-    L_SHAPE(new int[][] {{0, 0, 1}, {1, 1, 1}});
+    L_SHAPE(new int[][] {{0, 1, 0}, {1, 1, 1}});
 
     private int[][] configuration;
 
