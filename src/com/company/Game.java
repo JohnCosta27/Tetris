@@ -62,6 +62,12 @@ public class Game {
         this.updateShape();
     }
 
+    public void downClick(){
+        this.currentShape.down();
+        this.updateShape();
+
+    }
+
     public int[][] getGrid() {
         return this.grid;
     }

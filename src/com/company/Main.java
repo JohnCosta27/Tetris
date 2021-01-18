@@ -73,6 +73,9 @@ public class Main extends Application {
         } else if (key == KeyCode.RIGHT) {
             game.rightClick();
             draw();
+        } else if (key == KeyCode.DOWN) {
+            game.downClick();
+            draw();
         }
 
 
