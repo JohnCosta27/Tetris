@@ -111,8 +111,7 @@ public class Game {
     }
 
     public void downClick(){
-        this.currentShape.down();
-        this.updateShape();
+        tick();
 
     }
 

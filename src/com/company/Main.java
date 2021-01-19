@@ -24,6 +24,7 @@ public class Main extends Application {
 
     private Canvas canvas = new Canvas();
     private Game game = new Game();
+    private Timeline fiveSecondsWonder;
 
     public void start(Stage primaryStage) {
 
@@ -47,9 +48,10 @@ public class Main extends Application {
         draw();
 
         scene.setOnKeyPressed(e -> keyPressed(e));
+        scene.setOnKeyReleased(e -> keyReleased(e));
 
-        Timeline fiveSecondsWonder = new Timeline(
-                new KeyFrame(Duration.seconds(0.1),
+        fiveSecondsWonder = new Timeline(
+                new KeyFrame(Duration.seconds(2),
                         new EventHandler<ActionEvent>() {
 
                             @Override
@@ -63,7 +65,21 @@ public class Main extends Application {
 
     }
 
+    private void keyReleased(KeyEvent e) {
+
+        // TODO : TURN INTO SWITCH CASE
+
+        KeyCode key = e.getCode();
+        if (key == KeyCode.DOWN) {
+            System.out.println(fiveSecondsWonder.getRate());
+            fiveSecondsWonder.setRate(1);
+            System.out.println(fiveSecondsWonder.getRate());
+            draw();}
+    }
+
     private void keyPressed(KeyEvent e) {
+
+        // TODO : TURN INTO SWITCH CASE
 
         KeyCode key = e.getCode();
 
@@ -74,9 +90,11 @@ public class Main extends Application {
             game.rightClick();
             draw();
         } else if (key == KeyCode.DOWN) {
-            game.downClick();
+            fiveSecondsWonder.setRate(10);
             draw();
         }
+
+        //fiveSecondsWonder.setRate(0);
 
 
     }
