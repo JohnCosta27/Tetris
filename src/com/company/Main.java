@@ -26,21 +26,6 @@ public class Main extends Application {
     private Game game = new Game();
     private Timeline fiveSecondsWonder;
 
-    private double tickTime = 1;
-    private boolean keyDown = false;
-
-    Timeline fiveSecondsWonder = new Timeline(
-            new KeyFrame(Duration.seconds(tickTime),
-                    new EventHandler<ActionEvent>() {
-
-                        @Override
-                        public void handle(ActionEvent event) {
-                            game.tick();
-                            draw();
-                        }
-
-                    }));
-
     public void start(Stage primaryStage) {
 
         primaryStage.setTitle("Tetris");
@@ -65,9 +50,8 @@ public class Main extends Application {
         scene.setOnKeyPressed(e -> keyPressed(e));
         scene.setOnKeyReleased(e -> keyReleased(e));
 
-<<<<<<< Updated upstream
         fiveSecondsWonder = new Timeline(
-                new KeyFrame(Duration.seconds(2),
+                new KeyFrame(Duration.seconds(1),
                         new EventHandler<ActionEvent>() {
 
                             @Override
@@ -76,8 +60,7 @@ public class Main extends Application {
                                 draw();
                             }
                         }));
-=======
->>>>>>> Stashed changes
+
         fiveSecondsWonder.setCycleCount(Timeline.INDEFINITE);
         fiveSecondsWonder.play();
 
@@ -85,14 +68,14 @@ public class Main extends Application {
 
     private void keyReleased(KeyEvent e) {
 
-        // TODO : TURN INTO SWITCH CASE
-
         KeyCode key = e.getCode();
         if (key == KeyCode.DOWN) {
             System.out.println(fiveSecondsWonder.getRate());
             fiveSecondsWonder.setRate(1);
             System.out.println(fiveSecondsWonder.getRate());
-            draw();}
+            draw();
+        }
+
     }
 
     private void keyPressed(KeyEvent e) {
@@ -108,68 +91,19 @@ public class Main extends Application {
             game.rightClick();
             draw();
         } else if (key == KeyCode.DOWN) {
-<<<<<<< Updated upstream
-            fiveSecondsWonder.setRate(10);
+
+            fiveSecondsWonder.setRate(15);
             draw();
-=======
-            if (!keyDown) {
 
-                fiveSecondsWonder.stop();
+        } else if (key == KeyCode.UP) {
 
-                tickTime = 0.1;
-                fiveSecondsWonder = new Timeline(
-                        new KeyFrame(Duration.seconds(tickTime),
-                                new EventHandler<ActionEvent>() {
+            game.upClick();
+            draw();
 
-                                    @Override
-                                    public void handle(ActionEvent event) {
-                                        game.tick();
-                                        draw();
-                                    }
-
-                                }));
-                fiveSecondsWonder.setCycleCount(Timeline.INDEFINITE);
-                fiveSecondsWonder.play();
-                keyDown = true;
-            }
->>>>>>> Stashed changes
         }
 
         //fiveSecondsWonder.setRate(0);
 
-
-    }
-
-    private void keyReleased(KeyEvent e) {
-
-        KeyCode key = e.getCode();
-
-        if (key == KeyCode.DOWN) {
-
-            if (keyDown) {
-
-                fiveSecondsWonder.stop();
-
-                tickTime = 1;
-                fiveSecondsWonder = new Timeline(
-                        new KeyFrame(Duration.seconds(tickTime),
-                                new EventHandler<ActionEvent>() {
-
-                                    @Override
-                                    public void handle(ActionEvent event) {
-                                        game.tick();
-                                        draw();
-                                    }
-
-                                }));
-                fiveSecondsWonder.setCycleCount(Timeline.INDEFINITE);
-                fiveSecondsWonder.play();
-                keyDown = false;
-
-                System.out.println(fiveSecondsWonder.getKeyFrames());
-
-            }
-        }
 
     }
 

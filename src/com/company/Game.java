@@ -22,6 +22,7 @@ public class Game {
             currentShape.down();
         }
 
+        checkRows();
         updateShape();
 
     }
@@ -87,7 +88,7 @@ public class Game {
         for (int i = 0; i < configuration.length; i++) {
             for (int j = 0; j < configuration[0].length; j++) {
 
-                if (configuration[i][j] == 1 && grid[i + y][j + x] == 2) return true;
+                    if (configuration[i][j] == 1 && grid[i + y][j + x] == 2) return true;
 
             }
         }
@@ -110,13 +111,32 @@ public class Game {
         }
     }
 
-    public void downClick(){
-<<<<<<< Updated upstream
-        tick();
+    public void upClick() {
+        this.currentShape.rotateLeft();
+        this.updateShape();
+    }
 
-=======
-        this.tick();
->>>>>>> Stashed changes
+    public void checkRows() {
+
+        for (int i = 0; i < this.grid.length; i++) {
+
+            boolean clear = true;
+
+            for (int j = 0; j < this.grid[0].length; j++) {
+                if (this.grid[i][j] == 0) {
+                    clear = false;
+                    break;
+                }
+            }
+
+            if (clear) {
+                for (int j = 0; j < this.grid[0].length; j++) {
+                    this.grid[i][j] = 0;
+                }
+            }
+
+        }
+
     }
 
     public int[][] getGrid() {
