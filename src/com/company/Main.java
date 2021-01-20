@@ -26,6 +26,21 @@ public class Main extends Application {
     private Game game = new Game();
     private Timeline fiveSecondsWonder;
 
+    private double tickTime = 1;
+    private boolean keyDown = false;
+
+    Timeline fiveSecondsWonder = new Timeline(
+            new KeyFrame(Duration.seconds(tickTime),
+                    new EventHandler<ActionEvent>() {
+
+                        @Override
+                        public void handle(ActionEvent event) {
+                            game.tick();
+                            draw();
+                        }
+
+                    }));
+
     public void start(Stage primaryStage) {
 
         primaryStage.setTitle("Tetris");
@@ -50,6 +65,7 @@ public class Main extends Application {
         scene.setOnKeyPressed(e -> keyPressed(e));
         scene.setOnKeyReleased(e -> keyReleased(e));
 
+<<<<<<< Updated upstream
         fiveSecondsWonder = new Timeline(
                 new KeyFrame(Duration.seconds(2),
                         new EventHandler<ActionEvent>() {
@@ -60,6 +76,8 @@ public class Main extends Application {
                                 draw();
                             }
                         }));
+=======
+>>>>>>> Stashed changes
         fiveSecondsWonder.setCycleCount(Timeline.INDEFINITE);
         fiveSecondsWonder.play();
 
@@ -90,12 +108,68 @@ public class Main extends Application {
             game.rightClick();
             draw();
         } else if (key == KeyCode.DOWN) {
+<<<<<<< Updated upstream
             fiveSecondsWonder.setRate(10);
             draw();
+=======
+            if (!keyDown) {
+
+                fiveSecondsWonder.stop();
+
+                tickTime = 0.1;
+                fiveSecondsWonder = new Timeline(
+                        new KeyFrame(Duration.seconds(tickTime),
+                                new EventHandler<ActionEvent>() {
+
+                                    @Override
+                                    public void handle(ActionEvent event) {
+                                        game.tick();
+                                        draw();
+                                    }
+
+                                }));
+                fiveSecondsWonder.setCycleCount(Timeline.INDEFINITE);
+                fiveSecondsWonder.play();
+                keyDown = true;
+            }
+>>>>>>> Stashed changes
         }
 
         //fiveSecondsWonder.setRate(0);
 
+
+    }
+
+    private void keyReleased(KeyEvent e) {
+
+        KeyCode key = e.getCode();
+
+        if (key == KeyCode.DOWN) {
+
+            if (keyDown) {
+
+                fiveSecondsWonder.stop();
+
+                tickTime = 1;
+                fiveSecondsWonder = new Timeline(
+                        new KeyFrame(Duration.seconds(tickTime),
+                                new EventHandler<ActionEvent>() {
+
+                                    @Override
+                                    public void handle(ActionEvent event) {
+                                        game.tick();
+                                        draw();
+                                    }
+
+                                }));
+                fiveSecondsWonder.setCycleCount(Timeline.INDEFINITE);
+                fiveSecondsWonder.play();
+                keyDown = false;
+
+                System.out.println(fiveSecondsWonder.getKeyFrames());
+
+            }
+        }
 
     }
 

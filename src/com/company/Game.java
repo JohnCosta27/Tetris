@@ -111,8 +111,12 @@ public class Game {
     }
 
     public void downClick(){
+<<<<<<< Updated upstream
         tick();
 
+=======
+        this.tick();
+>>>>>>> Stashed changes
     }
 
     public int[][] getGrid() {
