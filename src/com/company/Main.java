@@ -56,14 +56,28 @@ public class Main extends Application {
 
                             @Override
                             public void handle(ActionEvent event) {
-                                game.tick();
-                                draw();
+                                gameLoop();
                             }
                         }));
 
         fiveSecondsWonder.setCycleCount(Timeline.INDEFINITE);
         fiveSecondsWonder.play();
 
+    }
+
+    private void gameLoop() {
+        if (game.tick()) {
+
+            // This is when the player loses.
+
+            this.game = new Game();
+            draw();
+
+        } else {
+
+            draw();
+
+        }
     }
 
     private void keyReleased(KeyEvent e) {
@@ -124,14 +138,11 @@ public class Main extends Application {
 
         int[][] grid = game.getGrid();
 
-        context.setFill(Color.RED);
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
 
-                double topleft = (width / 2) - (squareSize * 5);
-                if (grid[i][j] == 1 || grid[i][j] == 2) context.fillRect(topleft + j * squareSize, i * squareSize, squareSize - 2, squareSize - 2);
-
-
+                context.setFill(this.game.getColor());
+                if (grid[i][j] == 1 || grid[i][j] == 2) context.fillRect((width / 2) - (squareSize * 5) + j * squareSize, i * squareSize, squareSize - 2, squareSize - 2);
 
             }
         }

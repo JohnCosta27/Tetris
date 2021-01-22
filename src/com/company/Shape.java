@@ -1,16 +1,26 @@
 package com.company;
 
+import javafx.scene.paint.Color;
+
+import java.util.Random;
+
 public class Shape {
 
     private int[][] configuration;
     private int x;
     private int y = 0;
+    private Color color;
 
     private int rotationStatus = 0;
 
     public Shape() {
 
-        this.configuration = ShapeConfig.L_SHAPE.getConfiguration();
+        Random ran = new Random();
+        int nextShape = ran.nextInt(ShapeConfig.values().length);
+
+        this.configuration = ShapeConfig.values()[nextShape].getConfiguration();
+        this.color = ShapeConfig.values()[nextShape].getColor();
+
         this.x = (10 - this.configuration[0].length) / 2 + 1;
 
     }
@@ -27,12 +37,16 @@ public class Shape {
         return this.y;
     }
 
+    public Color getColor() {
+        return this.color;
+    }
+
     public void down(){
         this.y++;
     }
 
     public void right(){
-        if (this.x - rotationStatus < 10 - this.configuration.length - 1) this.x++;
+        if (this.x - rotationStatus < 10 - this.configuration.length) this.x++;
     }
 
     public void left(){

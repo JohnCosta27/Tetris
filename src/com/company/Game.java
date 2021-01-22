@@ -1,5 +1,7 @@
 package com.company;
 
+import javafx.scene.paint.Color;
+
 public class Game {
 
     private Shape currentShape;
@@ -13,18 +15,21 @@ public class Game {
 
     }
 
-    public void tick() {
+    public boolean tick() {
 
         if (currentShape.getY() + currentShape.getConfiguration().length == 20 || collision(0, 1)) {
             setShape();
             checkRows();
             this.currentShape = new Shape();
+            if (currentShape.getY() + currentShape.getConfiguration().length == 20 || collision(0, 1)) {
+                return true;
+            }
         } else {
             currentShape.down();
         }
 
         updateShape();
-
+        return false;
     }
 
     public void printGrid() {
@@ -114,6 +119,8 @@ public class Game {
 
     public void upClick() {
         this.currentShape.rotateLeft();
+        this.currentShape.rotateLeft();
+        this.currentShape.rotateLeft();
         this.updateShape();
     }
 
@@ -147,6 +154,10 @@ public class Game {
 
     public int[][] getGrid() {
         return this.grid;
+    }
+
+    public Color getColor() {
+        return this.currentShape.getColor();
     }
 
 }
