@@ -118,7 +118,7 @@ public class Game {
 
     public void checkRows() {
 
-        for (int i = 0; i < this.grid.length; i++) {
+        for (int i = this.grid.length - 1;0 <= i  ; i--) {
 
             boolean clear = true;
 
@@ -133,6 +133,10 @@ public class Game {
                 for (int j = 0; j < this.grid[0].length; j++) {
                     this.grid[i][j] = 0;
                 }
+                for ( int j = i;j > 0 ; j--){
+                    grid [j] = grid[j-1];
+                }
+                i --;
             }
 
         }
