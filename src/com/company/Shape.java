@@ -49,13 +49,6 @@ public class Shape {
             }
         }
 
-        /*for (int i = 0; i < newConfig.length; i++) {
-            for (int j = 0; j < newConfig[0].length; j++) {
-                System.out.print(newConfig[i][j]);
-            }
-            System.out.println();
-        }*/
-
         this.configuration = newConfig;
 
         if (this.rotationStatus == 0) {

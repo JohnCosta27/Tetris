@@ -17,12 +17,12 @@ public class Game {
 
         if (currentShape.getY() + currentShape.getConfiguration().length == 20 || collision(0, 1)) {
             setShape();
+            checkRows();
             this.currentShape = new Shape();
         } else {
             currentShape.down();
         }
 
-        checkRows();
         updateShape();
 
     }
@@ -76,6 +76,7 @@ public class Game {
 
             }
         }
+
     }
 
     public boolean collision(int dx, int dy) {
@@ -99,7 +100,7 @@ public class Game {
 
     public void leftClick() {
         if (!collision(-1, 0)) {
-            currentShape.left();
+            this.currentShape.left();
             this.updateShape();
         }
     }
@@ -133,9 +134,10 @@ public class Game {
                 for (int j = 0; j < this.grid[0].length; j++) {
                     this.grid[i][j] = 0;
                 }
-                for ( int j = i;j > 0 ; j--){
+                for (int j = i; j > 0; j--) {
                     grid [j] = grid[j-1];
                 }
+                grid[0] = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
                 i --;
             }
 
